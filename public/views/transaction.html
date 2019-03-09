@@ -78,9 +78,45 @@
           <td><strong>LockTime</strong></td>
           <td class="text-muted text-right">{{tx.locktime}}</td>
         </tr>
+        <tr data-ng-show="tx.version === 3 && tx.type >= 1">
+          <td style="background-color: #00ffff"><strong><a href="https://github.com/dashpay/dips/blob/master/dip-0002-special-transactions.md">Special Transaction Type</a></strong></td>
+          <td class="text-muted text-right">{{tx.type === 1 ? "Provider Registration Transaction (ProRegTx)	DIP 3" : tx.type === 2 ? "Provider Update Service Transaction (ProUpServTx)	DIP 3" : tx.type === 3 ? "Provider Update Registrar Transaction (ProUpRegTx) DIP 3" : tx.type === 4 ? "Provider Update Revocation Transaction (ProUpRevTx) DIP 3" : tx.type === 5 ? "Coinbase Transaction (CbTx) DIP 4" : tx.type === 6 ? "Quorum Commitment DIP 6" : tx.type === 8 ? "Register Subscription Transaction (SubTxRegister) DIP 5" : tx.type === 9 ? "Topup BU Credit Subscription Transaction (SubTxTopup)	DIP 5" : tx.type === 10 ? "Reset BU Key Subscription Transaction (SubTxResetKey) DIP 5" : tx.type === 11 ? "Close BU Account Subscription Transaction (SubTxCloseAccount) DIP 5" : tx.type}}</td>
+        </tr>
         <tr>
-          <td><strong>InstantSend</strong></td>
+          <td style="background-color: #008de4"><strong>InstantSend</strong></td>
           <td class="text-muted text-right">{{tx.txlock}}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #ff9900"><strong>PrivateSend Mixing Round</strong></td>
+          <td class="text-muted text-right">{{tx.vin.length === tx.vout.length && tx.vin.length >= 3}}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #ff9966"><strong>PrivateSend</strong></td>
+          <td class="text-muted text-right">{{tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].value === 0.00100001 || tx.vin[0].value === 0.0100001 || tx.vin[0].value === 0.100001 || tx.vin[0].value === 1.00001 || tx.vin[0].value === 10.0001}}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #993300"><strong>Superblock</strong></td>
+          <td class="text-muted text-right">{{tx.isCoinBase && tx.vout.length > 2 && tx.vout[0].value >= 1.7}}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #99ff"><strong>Masternode creation</strong></td>
+          <td class="text-muted text-right">{{(tx.vout.length >= 1 && tx.vout[0].value === 1000) || (tx.vout.length >= 2 && tx.vout[1].value === 1000)}}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #993300"><strong>Masternode destruction</strong></td>
+          <td class="text-muted text-right">{{tx.vin.length >= 1 && tx.vin[0].value >= 1000}}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #66ffff"><strong>OP_RETURN chat or signature</strong></td>
+          <td class="text-muted text-right">{{tx.op_return_message}}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #ff00ff"><strong>Stresstest</strong></td>
+          <td class="text-muted text-right">{{tx.vin.length === 1 && tx.vout.length === 0 && tx.fees === 0.00000192}}</td>
+        </tr>
+        <tr>
+          <td style="background-color: #00ffff"><strong>Known Address</strong></td>
+          <td class="text-muted text-right">{{tx.knownaddress}}</td>
         </tr>
         <tr data-ng-show="tx.isCoinBase">
           <td><strong>Coinbase</strong></td>

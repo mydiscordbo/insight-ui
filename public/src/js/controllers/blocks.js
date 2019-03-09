@@ -93,7 +93,7 @@ angular.module('insight.blocks').controller('BlocksController',
     Block.get({
       blockHash: $routeParams.blockHash
     }, function(block) {
-      $rootScope.titleDetail = block.height;
+      $rootScope.titleDetail = block && block.height;
       $rootScope.flashMessage = null;
       $scope.loading = false;
       $scope.block = block;

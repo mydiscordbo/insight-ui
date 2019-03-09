@@ -52,11 +52,11 @@ angular.module('insight.currency', ['ui.router', 'ui.bootstrap']).controller('Cu
                 });
             } else if (currency === 'EUR') {
                 Currency.get({}, function(res) {
-                    $rootScope.currency.factor = $rootScope.currency.bitstamp = res.data.bitstamp * 1.14;
+                    $rootScope.currency.factor = $rootScope.currency.bitstamp = res.data.bitstamp / 1.13;
                 });
             } else if (currency === 'GBP') {
                 Currency.get({}, function(res) {
-                    $rootScope.currency.factor = $rootScope.currency.bitstamp = res.data.bitstamp * 1.32;
+                    $rootScope.currency.factor = $rootScope.currency.bitstamp = res.data.bitstamp / 1.31;
                 });
             } else if (currency === 'mDASH') {
                 $rootScope.currency.factor = 1000;
