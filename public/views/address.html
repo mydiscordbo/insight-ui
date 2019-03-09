@@ -27,7 +27,7 @@
       <span class="text-muted">{{address.addrStr}}</span>
       <span class="btn-copy" clip-copy="address.addrStr"></span>
     </div>
-    <h2 translate>Summary <small>confirmed</small></h2>
+    <h2 translate>Summary <small>{{address.balance + " DASH confirmed" + (address.unconfirmedTxApperances>0?" + "+address.unconfirmedBalance+" DASH unconfirmed" :"")}}</small></h2>
     <div class="row" data-ng-hide="!address.addrStr">
       <div class="col-md-10">
         <table class="table">
@@ -46,7 +46,7 @@
           </tr>
           <tr>
             <td><strong translate>No. Transactions</strong></td>
-            <td class="ellipsis text-right">{{address.txApperances+address.unconfirmedTxApperances}}</td>
+            <td class="ellipsis text-right">{{address.txApperances+(address.unconfirmedTxApperances>0?" + "+address.unconfirmedTxApperances+" unconfirmed" :"")}}</td>
           </tr>
           </tbody>
         </table>
@@ -55,7 +55,7 @@
         <qrcode size="160" data="{{address.addrStr}}"></qrcode>
       </div>
     </div>
-    <div data-ng-show="address.unconfirmedTxApperances">
+    <div data-ng-show="false && address.unconfirmedTxApperances">
       <h3 translate>Unconfirmed (included above)</h3>
       <table class="table">
         <tbody>
@@ -67,7 +67,6 @@
           <td class="small" translate>No. Transactions</td>
           <td class="address ellipsis text-right">{{address.unconfirmedTxApperances}}</td>
         </tr>
-
         </tbody>
       </table>
     </div>

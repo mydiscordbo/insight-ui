@@ -107,7 +107,7 @@
           <td style="background-color: #ffa3a0"><strong>Masternode destruction</strong></td>
           <td class="text-muted text-right">{{tx.vin.length >= 1 && tx.vin[0].value >= 1000}}</td>
         </tr>
-        <tr data-ng-show="tx.op_return_message !== ''">
+        <tr data-ng-show="tx.op_return_message && tx.op_return_message.length > 0">
           <td style="background-color: #e6ffff"><strong>OP_RETURN chat or signature</strong></td>
           <td class="text-muted text-right">{{tx.op_return_message}}</td>
         </tr>
@@ -115,7 +115,7 @@
           <td style="background-color: #ffe0ff"><strong>Stresstest</strong></td>
           <td class="text-muted text-right">{{tx.vin.length === 1 && tx.vout.length === 0 && tx.fees === 0.00000192}}</td>
         </tr>
-        <tr data-ng-show="tx.knownaddress !== ''">
+        <tr data-ng-show="tx.knownaddress && tx.knownaddress.length > 0">
           <td style="background-color: #e0ffff"><strong>Known Address</strong></td>
           <td class="text-muted text-right">{{tx.knownaddress}}</td>
         </tr>
