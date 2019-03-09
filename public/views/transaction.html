@@ -91,9 +91,9 @@
           <td style="background-color: #ffe9c9"><strong>PrivateSend Mixing Round</strong></td>
           <td class="text-muted text-right">{{tx.vin.length === tx.vout.length && tx.vin.length >= 3}}</td>
         </tr>
-        <tr data-ng-show="tx.vin.length === tx.vout.length && tx.vin.length >= 3">
+        <tr data-ng-show="tx.vin.length === 1 && tx.vout.length >= 3 && (tx.vout[0].value === 0.00100001 || tx.vout[0].value === 0.0100001 || tx.vout[0].value === 0.100001 || tx.vout[0].value === 1.00001 || tx.vout[0].value === 10.0001 || tx.vout[1].value === 0.00100001 || tx.vout[1].value === 0.0100001 || tx.vout[1].value === 0.100001 || tx.vout[1].value === 1.00001 || tx.vout[1].value === 10.0001)">
           <td style="background-color: #efefa9"><strong>PrivateSend Start Mixing</strong></td>
-          <td class="text-muted text-right">{{tx.vin.length === 1 && tx.vout.length >= 3 && (tx.vout[0].value === 0.00100001 || tx.vout[0].value === 0.0100001 || tx.vout[0].value === 0.100001 || tx.vout[0].value === 1.00001 || tx.vout[0].value === 10.0001)}}</td>
+          <td class="text-muted text-right">{{tx.vin.length === 1 && tx.vout.length >= 3 && (tx.vout[0].value === 0.00100001 || tx.vout[0].value === 0.0100001 || tx.vout[0].value === 0.100001 || tx.vout[0].value === 1.00001 || tx.vout[0].value === 10.0001 || tx.vout[1].value === 0.00100001 || tx.vout[1].value === 0.0100001 || tx.vout[1].value === 0.100001 || tx.vout[1].value === 1.00001 || tx.vout[1].value === 10.0001)}}</td>
         </tr>
         <tr data-ng-show="tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].value === 0.00100001 || tx.vin[0].value === 0.0100001 || tx.vin[0].value === 0.100001 || tx.vin[0].value === 1.00001 || tx.vin[0].value === 10.0001)">
           <td style="background-color: #ffe9b8"><strong>PrivateSend</strong></td>
