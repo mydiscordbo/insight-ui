@@ -23,56 +23,24 @@ angular.module('insight.search').controller('SearchController',
     $scope.badQuery = false;
     $scope.loading = true;
 
-    if (q.length === 64) {
-      Block.get({
-        blockHash: q
-      }, function() {
-        _resetSearch();
-        $location.path('block/' + q);
-      }, function() { //block not found, search on TX
-        Transaction.get({
-          txId: q
-        }, function() {
-          _resetSearch();
-          $location.path('tx/' + q);
-        }, function() { //tx not found, search on Address
-          Address.get({
-            addrStr: q
-          }, function() {
-            _resetSearch();
-            $location.path('address/' + q);
-          }, function() { // block by height not found
-            if (isFinite(q)) { // ensure that q is a finite number. A logical height value.
-              BlockByHeight.get({
-                blockHeight: q
-              }, function(hash) {
-                _resetSearch();
-                $location.path('/block/' + hash.blockHash);
-              }, function() { //not found, fail :(
-                $scope.loading = false;
-                _badQuery();
-              });
-            }
-            else {
-              $scope.loading = false;
-              _badQuery();
-            }
-          });
-        });
-      });
-    } else {
+    Address.get({
+      addrStr: q
+    }, function() {
+      _resetSearch();
+      $location.path('address/' + q);
+    }, function() {
       Transaction.get({
         txId: q
       }, function() {
         _resetSearch();
         $location.path('tx/' + q);
-      }, function() { //tx not found, search on Address
-        Address.get({
-          addrStr: q
+      }, function() { //tx not found, search on Block
+        Block.get({
+          blockHash: q
         }, function() {
           _resetSearch();
-          $location.path('address/' + q);
-        }, function() { // block by height not found
+          $location.path('block/' + q);
+        }, function() { //block not found, search on number
           if (isFinite(q)) { // ensure that q is a finite number. A logical height value.
             BlockByHeight.get({
               blockHeight: q
@@ -90,6 +58,6 @@ angular.module('insight.search').controller('SearchController',
           }
         });
       });
-    }
+    });
   };
 });
