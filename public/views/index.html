@@ -42,8 +42,8 @@
         <table class="table table-hover table-striped" style="table-layout: fixed;">
           <thead>
             <tr>
-              <th>Hash</th>
-              <th style="width:64px;"></th>
+              <th style="width:50%">Hash</th>
+              <th style="width:30%;text-align:center"></th>
               <th class="text-right" translate>Value Out</th>
             </tr>
           </thead>
@@ -54,16 +54,16 @@
               <a class="ellipsis" href="tx/{{tx.txid}}">{{tx.txid}}</a>
             </td>
             <td style='font-size:small'>
-              <span data-ng-show="tx.version === 3 && tx.type >= 1" style="background-color: #e0efef"><a href="https://github.com/dashpay/dips/blob/master/dip-0002-special-transactions.md">Special Transaction</a></span>
-              <span data-ng-show="tx.txlock || tx.fees === 0.0001" style="background-color: #e0ffe4">InstantSend</span>
-              <span data-ng-show="tx.vin.length === tx.vout.length && tx.vin.length >= 3" style="background-color: #ffe9c9">PrivateSend Mixing</span>
-              <span data-ng-show="tx.vin.length === 1 && tx.vout.length >= 3 && (tx.vout[0].value === 0.00100001 || tx.vout[0].value === 0.0100001 || tx.vout[0].value === 0.100001 || tx.vout[0].value === 1.00001 || tx.vout[0].value === 10.0001 || tx.vout[1].value === 0.00100001 || tx.vout[1].value === 0.0100001 || tx.vout[1].value === 0.100001 || tx.vout[1].value === 1.00001 || tx.vout[1].value === 10.0001)" style="background-color: #efefa9">PrivateSend Start</span>
-              <span data-ng-show="tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].value === 0.00100001 || tx.vin[0].value === 0.0100001 || tx.vin[0].value === 0.100001 || tx.vin[0].value === 1.00001 || tx.vin[0].value === 10.0001)" style="background-color: #ffe9b8">PrivateSend</span>
-              <span data-ng-show="(tx.vout.length >= 1 && tx.vout[0].value === 1000) || (tx.vout.length >= 2 && tx.vout[1].value === 1000)" style="background-color: #bfbfff">Masternode creation</span>
-              <span data-ng-show="tx.vin.length >= 1 && tx.vin[0].value >= 1000" style="background-color: #ffa3a0">Masternode destruction</span>
-              <span data-ng-show="tx.op_return_message && tx.op_return_message.length > 0" style="background-color: #e6ffff">Chat: {{tx.op_return_message}}</span>
-              <span data-ng-show="tx.vin.length === 1 && tx.vout.length === 0 && tx.fees === 0.00000192" style="background-color: #ffe0ff">Stresstest</span>
-              <span data-ng-show="tx.knownaddress && tx.knownaddress.length > 0" style="background-color: #e0ffff">{{tx.knownaddress}}</span>
+              <span data-ng-show="tx.version === 3 && tx.type >= 1"><span style="background-color: #e0efef"><a href="https://github.com/dashpay/dips/blob/master/dip-0002-special-transactions.md">Special Transaction</a></span></span>
+              <span data-ng-show="tx.txlock || tx.fees === 0.0001"><span style="background-color: #e0ffe4">InstantSend</span></span>
+              <span data-ng-show="tx.vin.length === tx.vout.length && tx.vin.length >= 3"><span style="background-color: #ffe9c9">PrivateSend Mixing</span></span>
+              <span data-ng-show="tx.vin.length === 1 && tx.vout.length >= 3 && (tx.vout[0].value === 0.00100001 || tx.vout[0].value === 0.0100001 || tx.vout[0].value === 0.100001 || tx.vout[0].value === 1.00001 || tx.vout[0].value === 10.0001 || tx.vout[1].value === 0.00100001 || tx.vout[1].value === 0.0100001 || tx.vout[1].value === 0.100001 || tx.vout[1].value === 1.00001 || tx.vout[1].value === 10.0001)"><span style="background-color: #efefa9">PrivateSend Start</span></span>
+              <span data-ng-show="tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].value === 0.00100001 || tx.vin[0].value === 0.0100001 || tx.vin[0].value === 0.100001 || tx.vin[0].value === 1.00001 || tx.vin[0].value === 10.0001)"><span style="background-color: #ffe9b8">PrivateSend</span></span>
+              <span data-ng-show="(tx.vout.length >= 1 && tx.vout[0].value === 1000) || (tx.vout.length >= 2 && tx.vout[1].value === 1000)"><span style="background-color: #bfbfff">Masternode creation</span>
+              <span data-ng-show="tx.vin.length >= 1 && tx.vin[0].value >= 1000"><span style="background-color: #ffa3a0">Masternode destruction</span></span>
+              <span data-ng-show="tx.op_return_message && tx.op_return_message.length > 0"><span style="background-color: #e6ffff">Chat: {{tx.op_return_message}}</span></span>
+              <span data-ng-show="tx.vin.length === 1 && tx.vout.length === 0 && tx.fees === 0.00000192"><span style="background-color: #ffe0ff">Stresstest</span></span>
+              <span data-ng-show="tx.knownaddress && tx.knownaddress.length > 0"><span style="background-color: #e0ffff">{{tx.knownaddress}}</span></span>
             </td>
             <td class="text-right"><span class="ellipsis">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' DASH'}}</span></td>
           </tr>
@@ -72,8 +72,7 @@
       </div>
 
       <div class="col-xs-12 col-md-4 col-gray">
-        <h2 translate>About</h2>
-        <img src='./img/dash_about.jpg' alt="About Dash" style='max-width:360px;' />
+        <a href="https://dash.org" target="_blank"><img src='./img/dash_about.jpg' alt="About Dash" style='max-width:360px;' /></a>
         <div id="powered" class="row">
           <div class="powered-text">
             <small class="text-muted" translate>Powered by</small>
