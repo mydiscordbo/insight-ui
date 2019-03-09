@@ -45,6 +45,24 @@
         <a data-ng-click="openScannerModal()"><span class="glyphicon
             glyphicon-qrcode"></span> Scan</a>
       </li>
+      <li uib-dropdown>
+        <a uib-dropdown-toggle data-toggle="dropdown" href="#">
+          Useful Links <span class="caret"></span>
+        </a>
+        <ul uib-dropdown-menu>
+          <li><a href="https://dash.org">Dash.org website</a></li>
+          <li><a href="https://insight.dash.org">Insight.dash.org explorer</a></li>
+          <li><a href="https://chainz.cryptoid.info/dash/">CryptoId Dash explorer</a></li>
+          <li><a href="https://andyfreer.github.io/dash-machine/index.html">Dash Machine (3D)</a></li>
+          <li><a href="https://dashradar.com/graph">DashRadar live transactions</a></li>
+          <li><a href="https://dash-news.de/dashtv/">DashTV</a></li>
+          <li><a href="https://mydashwallet.org/">MyDashWallet</a></li>
+          <li><a href="https://mydashwallet.org/Chat">MyDashWallet Chat</a></li>
+          <li><a href="https://mydashwallet.org/Tipping">MyDashWallet Tipping</a></li>
+          <li><a href="https://mydashwallet.org/Mixing">MyDashWallet Mixing</a></li>
+          <li><a href="https://stresstest.mydashwallet.org/">MyDashWallet StressTest</a></li>
+        </ul>
+      </li>
       <li uib-dropdown data-ng-controller="CurrencyController" data-ng-include="'views/includes/currency.html'"></li>
       </ul>
     </div>
