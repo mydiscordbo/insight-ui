@@ -55,13 +55,11 @@
             </td>
             <td style='font-size:small'>
               <span data-ng-show="tx.version === 3 && tx.type >= 1" style="background-color: #e0efef"><a href="https://github.com/dashpay/dips/blob/master/dip-0002-special-transactions.md">Special Transaction</a></span>
-              <span data-ng-show="tx.txlock || tx.fees === 0.0001" style="background-color: #e0ffe4">InstantSend</span>
-              <span data-ng-show="tx.vin.length === tx.vout.length && tx.vin.length >= 3" style="background-color: #ffe9c9">PrivateSend Mixing</span>
-              <span data-ng-show="tx.vin.length === 1 && tx.vout.length >= 3 && (Object.values(tx.vout[0])[0] === 100001 || Object.values(tx.vout[0])[0] === 1000010 || Object.values(tx.vout[0])[0] === 10000100 || Object.values(tx.vout[0])[0] === 100001000 || Object.values(tx.vout[0])[0] === 1000010000 || Object.values(tx.vout[1])[0] === 100001 || Object.values(tx.vout[1])[0] === 1000010 || Object.values(tx.vout[1])[0] === 100001000 || Object.values(tx.vout[1])[0] === 1000010000)" style="background-color: #efefa9">PrivateSend Start</span>
-              <span data-ng-show="(tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].satoshis === 100001 || tx.vin[0].satoshis === 1000010 || tx.vin[0].satoshis === 10000100 || tx.vin[0].satoshis === 100001000 || tx.vin[0].satoshis === 1000010000)) || tx.privatesend" style="background-color: #ffe9b8">PrivateSend</span>
+              <span data-ng-show="tx.txlock" style="background-color: #e0ffe4">InstantSend</span>
+              <span data-ng-show="(tx.vin.length === tx.vout.length && tx.vin.length >= 3) || (tx.vin.length === 1 && tx.vout.length >= 3 && (Object.values(tx.vout[0])[0] === 100001 || Object.values(tx.vout[0])[0] === 1000010 || Object.values(tx.vout[0])[0] === 10000100 || Object.values(tx.vout[0])[0] === 100001000 || Object.values(tx.vout[0])[0] === 1000010000 || Object.values(tx.vout[1])[0] === 100001 || Object.values(tx.vout[1])[0] === 1000010 || Object.values(tx.vout[1])[0] === 100001000 || Object.values(tx.vout[1])[0] === 1000010000))" style="background-color: #ffe9c9">PrivateSend</span>
               <span data-ng-show="(tx.vout.length >= 1 && Object.values(tx.vout[0])[0] === 100000000000) || (tx.valueOut >= 1000)" style="background-color: #bfbfff">Masternode</span>
-              <span data-ng-show="tx.op_return_message && tx.op_return_message.length > 0 || tx.valueOut===0" style="background-color: #e6ffff">Chat: {{tx.op_return_message}}</span>
-              <span data-ng-show="tx.vin.length === 1 && tx.vout.length === 0 && tx.fees === 0.00000192" style="background-color: #ffe0ff">Stresstest</span>
+              <span data-ng-show="tx.op_return_message && tx.op_return_message.length > 0 || tx.valueOut===0" style="background-color: #e6ffff">OP_RETURN</span>
+              <span data-ng-show="tx.vin.length === 1 && tx.vout.length === 1 && tx.fees === 0.00000192" style="background-color: #ffe0ff">Stresstest</span>
               <span data-ng-show="tx.knownaddress && tx.knownaddress.length > 0" style="background-color: #e0ffff">{{tx.knownaddress}}</span>
             </td>
             <td class="text-right"><span class="ellipsis">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' DASH'}}</span></td>

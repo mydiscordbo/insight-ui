@@ -19,7 +19,7 @@
     </div>
   </div>
 </div>
-<div class="row line-mid" style="background-color:{{(tx.version === 3 && tx.type >= 1)?'#e0efef':tx.txlock || tx.fees === 0.0001?'#e0ffe4':(tx.vin.length === tx.vout.length && tx.vin.length >= 3)?'#ffe9c9':(tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].value === 0.00100001 || tx.vin[0].value === 0.0100001 || tx.vin[0].value === 0.100001 || tx.vin[0].value === 1.00001 || tx.vin[0].value === 10.0001))?'#ffe9b8':(tx.vin.length === 1 && tx.vout.length >= 3 && (tx.vout[0].value === 0.00100001 || tx.vout[0].value === 0.0100001 || tx.vout[0].value === 0.100001 || tx.vout[0].value === 1.00001 || tx.vout[0].value === 10.0001 || tx.vout[1].value === 0.00100001 || tx.vout[1].value === 0.0100001 || tx.vout[1].value === 0.100001 || tx.vout[1].value === 1.00001 || tx.vout[1].value === 10.0001))?'#efefa9':(tx.isCoinBase && tx.vout.length > 2 && tx.vout[0].value >= 1.7)?'#e3e3ff':((tx.vout.length >= 1 && tx.vout[0].value === 1000) || (tx.vout.length >= 2 && tx.vout[1].value === 1000))?'#bfbfff':(tx.vin.length >= 1 && tx.vin[0].value >= 1000)?'#ffa3a0':(tx.op_return_message && tx.op_return_message.length > 0)?'#e6ffff':(tx.vin.length === 1 && tx.vout.length === 0 && tx.fees === 0.00000192)?'#ffe0ff':(tx.knownaddress && tx.knownaddress.length > 0)?'#e0ffff':'#f4f4f4'}}">
+<div class="row line-mid" style="background-color:{{(tx.version === 3 && tx.type >= 1)?'#e0efef':tx.txlock?'#e0ffe4':(tx.vin.length === tx.vout.length && tx.vin.length >= 3)?'#ffe9c9':(tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].value === 0.00100001 || tx.vin[0].value === 0.0100001 || tx.vin[0].value === 0.100001 || tx.vin[0].value === 1.00001 || tx.vin[0].value === 10.0001))?'#ffe9b8':(tx.vin.length === 1 && tx.vout.length >= 3 && (tx.vout[0].value === 0.00100001 || tx.vout[0].value === 0.0100001 || tx.vout[0].value === 0.100001 || tx.vout[0].value === 1.00001 || tx.vout[0].value === 10.0001 || tx.vout[1].value === 0.00100001 || tx.vout[1].value === 0.0100001 || tx.vout[1].value === 0.100001 || tx.vout[1].value === 1.00001 || tx.vout[1].value === 10.0001))?'#efefa9':(tx.isCoinBase && tx.vout.length > 2 && tx.vout[0].value >= 1.7)?'#e3e3ff':((tx.vout.length >= 1 && tx.vout[0].value === 1000) || (tx.vout.length >= 2 && tx.vout[1].value === 1000))?'#bfbfff':(tx.vin.length >= 1 && tx.vin[0].value >= 1000)?'#ffa3a0':(tx.op_return_message && tx.op_return_message.length > 0)?'#e6ffff':(tx.vin.length === 1 && tx.vout.length === 0 && tx.fees === 0.00000192)?'#ffe0ff':(tx.knownaddress && tx.knownaddress.length > 0)?'#e0ffff':'#f4f4f4'}}">
   <div class="col-md-5">
     <div class="row" data-ng-if="tx.isCoinBase">
       <div class="col-md-12 transaction-vin-vout" data-ng-repeat="vin in tx.vin">
@@ -33,7 +33,7 @@
       <br />
       <span>{{tx.type === 1 ? "Provider Registration Transaction (ProRegTx)	DIP 3" : tx.type === 2 ? "Provider Update Service Transaction (ProUpServTx)	DIP 3" : tx.type === 3 ? "Provider Update Registrar Transaction (ProUpRegTx) DIP 3" : tx.type === 4 ? "Provider Update Revocation Transaction (ProUpRevTx) DIP 3" : tx.type === 5 ? "Coinbase Transaction (CbTx) DIP 4" : tx.type === 6 ? "Quorum Commitment DIP 6" : tx.type === 8 ? "Register Subscription Transaction (SubTxRegister) DIP 5" : tx.type === 9 ? "Topup BU Credit Subscription Transaction (SubTxTopup)	DIP 5" : tx.type === 10 ? "Reset BU Key Subscription Transaction (SubTxResetKey) DIP 5" : tx.type === 11 ? "Close BU Account Subscription Transaction (SubTxCloseAccount) DIP 5" : tx.type}}</span>
     </div>
-    <div data-ng-show="tx.txlock || tx.fees === 0.0001">
+    <div data-ng-show="tx.txlock">
       <strong>InstantSend TxLock</strong>
     </div>
     <div data-ng-show="tx.vin.length === tx.vout.length && tx.vin.length >= 3">
@@ -238,7 +238,7 @@
   </div>
   <div class="col-xs-6 col-sm-8 col-md-8 text-right">
     <span data-ng-show="tx.confirmations >= 0 || tx.txlock" class="txvalues
-      txvalues-success">{{tx.confirmations}} <span translate>Confirmations</span> <span data-ng-show="tx.txlock || tx.fees === 0.0001"> InstantSend TxLock</span></span>
+      txvalues-success">{{tx.confirmations}} <span translate>Confirmations</span> <span data-ng-show="tx.txlock"> InstantSend TxLock</span></span>
     <span data-ng-show="tx.confirmations < 0" class="txvalues txvalues-danger" translate>Unconfirmed Transaction!</span>
     <span class="txvalues txvalues-primary">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' DASH' }}</span>
   </div>

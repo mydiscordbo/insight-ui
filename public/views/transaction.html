@@ -83,9 +83,9 @@
           <td style="background-color: #e0efef"><strong><a href="https://github.com/dashpay/dips/blob/master/dip-0002-special-transactions.md">Special Transaction Type</a></strong></td>
           <td class="text-muted text-right">{{tx.type === 1 ? "Provider Registration Transaction (ProRegTx)	DIP 3" : tx.type === 2 ? "Provider Update Service Transaction (ProUpServTx)	DIP 3" : tx.type === 3 ? "Provider Update Registrar Transaction (ProUpRegTx) DIP 3" : tx.type === 4 ? "Provider Update Revocation Transaction (ProUpRevTx) DIP 3" : tx.type === 5 ? "Coinbase Transaction (CbTx) DIP 4" : tx.type === 6 ? "Quorum Commitment DIP 6" : tx.type === 8 ? "Register Subscription Transaction (SubTxRegister) DIP 5" : tx.type === 9 ? "Topup BU Credit Subscription Transaction (SubTxTopup)	DIP 5" : tx.type === 10 ? "Reset BU Key Subscription Transaction (SubTxResetKey) DIP 5" : tx.type === 11 ? "Close BU Account Subscription Transaction (SubTxCloseAccount) DIP 5" : tx.type}}</td>
         </tr>
-        <tr data-ng-show="tx.txlock || tx.fees === 0.0001">
+        <tr data-ng-show="tx.txlock">
           <td style="background-color: #e0ffe4"><strong>InstantSend</strong></td>
-          <td class="text-muted text-right">{{tx.txlock || tx.fees === 0.0001}}</td>
+          <td class="text-muted text-right">{{tx.txlock}}</td>
         </tr>
         <tr data-ng-show="tx.vin.length === tx.vout.length && tx.vin.length >= 3">
           <td style="background-color: #ffe9c9"><strong>PrivateSend Mixing Round</strong></td>
