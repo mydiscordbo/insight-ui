@@ -26,7 +26,16 @@ angular.module('insight.system').controller('IndexController',
           $scope.txs = $scope.txs.splice(0, TRANSACTION_DISPLAYED);
         }
       });
-
+      socket.on('txlock', function(tx) {
+        for (var transaction in $scope.txs)
+          if (transaction.txid === tx.txid)
+            transaction.txlock = tx.txlock;
+        //spam tx again, just in case the old one is gone by now
+        $scope.txs.unshift(tx);
+        if (parseInt($scope.txs.length, 10) >= parseInt(TRANSACTION_DISPLAYED, 10)) {
+          $scope.txs = $scope.txs.splice(0, TRANSACTION_DISPLAYED);
+        }
+      });
       socket.on('block', function() {
         _getBlocks();
       });
@@ -35,8 +44,6 @@ angular.module('insight.system').controller('IndexController',
     socket.on('connect', function() {
       _startSocket();
     });
-
-
 
     $scope.humanSince = function(time) {
       var m = moment.unix(time);
