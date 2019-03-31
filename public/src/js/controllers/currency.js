@@ -36,7 +36,9 @@ angular.module('insight.currency', ['ui.router', 'ui.bootstrap']).controller('Cu
                 // prevent sci notation
                 if (response < 1e-7) response = response.toFixed(8);
 
-                return response + ' ' + this.symbol;
+                //testnet:
+                response + ' t' + this.symbol;
+                //return response + ' ' + this.symbol;
             }
 
             return 'value error';
