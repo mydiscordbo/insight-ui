@@ -35,6 +35,8 @@ InsightUI.prototype.setupRoutes = function(app, express) {
   var self = this;
 
   app.use('/', function(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     if (req.headers.accept && req.headers.accept.indexOf('text/html') !== -1 &&
       req.headers["X-Requested-With"] !== 'XMLHttpRequest'
     ) {

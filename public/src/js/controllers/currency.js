@@ -37,8 +37,8 @@ angular.module('insight.currency', ['ui.router', 'ui.bootstrap']).controller('Cu
                 if (response < 1e-7) response = response.toFixed(8);
 
                 //testnet:
-                return response + ' t' + this.symbol;
-                //return response + ' ' + this.symbol;
+                //return response + ' t' + this.symbol;
+                return response + ' ' + this.symbol;
             }
 
             return 'value error';
