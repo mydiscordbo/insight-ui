@@ -34,7 +34,7 @@
       <span>{{tx.type === 1 ? "Provider Registration Transaction (ProRegTx)	DIP 3" : tx.type === 2 ? "Provider Update Service Transaction (ProUpServTx)	DIP 3" : tx.type === 3 ? "Provider Update Registrar Transaction (ProUpRegTx) DIP 3" : tx.type === 4 ? "Provider Update Revocation Transaction (ProUpRevTx) DIP 3" : tx.type === 5 ? "Coinbase Transaction (CbTx) DIP 4" : tx.type === 6 ? "Quorum Commitment DIP 6" : tx.type === 8 ? "Register Subscription Transaction (SubTxRegister) DIP 5" : tx.type === 9 ? "Topup BU Credit Subscription Transaction (SubTxTopup)	DIP 5" : tx.type === 10 ? "Reset BU Key Subscription Transaction (SubTxResetKey) DIP 5" : tx.type === 11 ? "Close BU Account Subscription Transaction (SubTxCloseAccount) DIP 5" : tx.type}}</span>
     </div>
     <div data-ng-show="tx.txlock">
-      <strong>InstantSend TxLock</strong>
+      <strong>InstantSend TxLock or ChainLock</strong>
     </div>
     <div data-ng-show="tx.vin.length === tx.vout.length && tx.vin.length >= 3">
       <strong>PrivateSend Mixing Round</strong>
@@ -42,8 +42,8 @@
     <div data-ng-show="tx.vin.length === 1 && tx.vout.length >= 3 && (tx.vout[0].value === 0.00100001 || tx.vout[0].value === 0.0100001 || tx.vout[0].value === 0.100001 || tx.vout[0].value === 1.00001 || tx.vout[0].value === 10.0001 || tx.vout[1].value === 0.00100001 || tx.vout[1].value === 0.0100001 || tx.vout[1].value === 0.100001 || tx.vout[1].value === 1.00001 || tx.vout[1].value === 10.0001)">
       <strong>PrivateSend Start Mixing</strong>
     </div>
-    <div data-ng-show="tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].value === 0.00100001 || tx.vin[0].value === 0.0100001 || tx.vin[0].value === 0.100001 || tx.vin[0].value === 1.00001 || tx.vin[0].value === 10.0001)">
-      <strong>PrivateSend</strong>
+    <div data-ng-show="tx.vin.length >= 3 && tx.vout.length <= 2 && (tx.vin[0].value === 0.00100001 || tx.vin[0].value === 0.0100001 || tx.vin[0].value === 0.100001 || tx.vin[0].value === 1.00001 || tx.vin[0].value === 10.0001 || tx.vin[1].value === 0.00100001 || tx.vin[1].value === 0.0100001 || tx.vin[1].value === 0.100001 || tx.vin[1].value === 1.00001 || tx.vin[1].value === 10.0001)">
+      <strong>PrivateSend Spending</strong>
     </div>
     <div data-ng-show="tx.isCoinBase && tx.vout.length > 2 && tx.vout[0].value >= 1.7">
       <strong>Superblock</strong>

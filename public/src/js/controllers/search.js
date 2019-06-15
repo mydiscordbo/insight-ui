@@ -23,6 +23,8 @@ angular.module('insight.search').controller('SearchController',
     $scope.badQuery = false;
     $scope.loading = true;
 
+    //Default order from https://github.com/dashevo/insight-ui/blob/master/public/src/js/controllers/search.js
+    // is block, then tx, then address, then height and then fail, we do this a bit more optimized by actual usage
     Address.get({
       addrStr: q
     }, function() {
