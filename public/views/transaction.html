@@ -17,7 +17,7 @@
         </span>
         <span data-ng-show="tx.confirmations < 0" 
           class="txvalues txvalues-danger" translate>Unconfirmed Transaction!</span>
-        <span class="txvalues txvalues-primary">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' DASH' }}</span>
+        <span class="txvalues txvalues-primary">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' VKAX' }}</span>
       </div>
     </div>
     <div class="hide_snavbar">
@@ -55,7 +55,7 @@
         </tr>
         <tr data-ng-show="tx.fees">
           <td><strong translate>Fee Rate</strong></td>
-          <td class="text-muted text-right">{{$root.currency.getConvertion((tx.fees * 1000) / tx.size) + ' per kB' || ((tx.fees * 1000) / tx.size) + 'DASH per kB'}}</td>
+          <td class="text-muted text-right">{{$root.currency.getConvertion((tx.fees * 1000) / tx.size) + ' per kB' || ((tx.fees * 1000) / tx.size) + 'VKAX per kB'}}</td>
         </tr>
         <tr>
           <td><strong translate>Received Time</strong></td>
@@ -80,7 +80,7 @@
           <td class="text-muted text-right">{{tx.locktime}}</td>
         </tr>
         <tr data-ng-show="tx.version === 3 && tx.type >= 1">
-          <td style="background-color: #e0efef"><strong><a href="https://github.com/dashpay/dips/blob/master/dip-0002-special-transactions.md">Special Transaction Type</a></strong></td>
+          <td style="background-color: #e0efef"><strong><a href="https://github.com/vkaxevo/dips/blob/master/dip-0002-special-transactions.md">Special Transaction Type</a></strong></td>
           <td class="text-muted text-right">{{tx.type === 1 ? "Provider Registration Transaction (ProRegTx)	DIP 3" : tx.type === 2 ? "Provider Update Service Transaction (ProUpServTx)	DIP 3" : tx.type === 3 ? "Provider Update Registrar Transaction (ProUpRegTx) DIP 3" : tx.type === 4 ? "Provider Update Revocation Transaction (ProUpRevTx) DIP 3" : tx.type === 5 ? "Coinbase Transaction (CbTx) DIP 4" : tx.type === 6 ? "Quorum Commitment DIP 6" : tx.type === 8 ? "Register Subscription Transaction (SubTxRegister) DIP 5" : tx.type === 9 ? "Topup BU Credit Subscription Transaction (SubTxTopup)	DIP 5" : tx.type === 10 ? "Reset BU Key Subscription Transaction (SubTxResetKey) DIP 5" : tx.type === 11 ? "Close BU Account Subscription Transaction (SubTxCloseAccount) DIP 5" : tx.type}}</td>
         </tr>
         <tr data-ng-show="tx.txlock">

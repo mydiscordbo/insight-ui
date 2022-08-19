@@ -29,7 +29,7 @@
       </div>
     </div>
     <div data-ng-show="tx.version === 3 && tx.type >= 1">
-      <strong><a href="https://github.com/dashpay/dips/blob/master/dip-0002-special-transactions.md">Special Transaction Type</a></strong>
+      <strong><a href="https://github.com/vkaxevo/dips/blob/master/dip-0002-special-transactions.md">Special Transaction Type</a></strong>
       <br />
       <span>{{tx.type === 1 ? "Provider Registration Transaction (ProRegTx)	DIP 3" : tx.type === 2 ? "Provider Update Service Transaction (ProUpServTx)	DIP 3" : tx.type === 3 ? "Provider Update Registrar Transaction (ProUpRegTx) DIP 3" : tx.type === 4 ? "Provider Update Revocation Transaction (ProUpRevTx) DIP 3" : tx.type === 5 ? "Coinbase Transaction (CbTx) DIP 4" : tx.type === 6 ? "Quorum Commitment DIP 6" : tx.type === 8 ? "Register Subscription Transaction (SubTxRegister) DIP 5" : tx.type === 9 ? "Topup BU Credit Subscription Transaction (SubTxTopup)	DIP 5" : tx.type === 10 ? "Reset BU Key Subscription Transaction (SubTxResetKey) DIP 5" : tx.type === 11 ? "Close BU Account Subscription Transaction (SubTxCloseAccount) DIP 5" : tx.type}}</span>
     </div>
@@ -68,12 +68,12 @@
       <div data-ng-if="!itemsExpanded" data-ng-init="currentInNoExpanded=0; sizeInNoExpanded=5">
         <div class="panel panel-default" data-ng-repeat="vin in tx.vinSimple| startFrom:currentInNoExpanded*sizeInNoExpanded | limitTo:sizeInNoExpanded">
           <div class="panel-body transaction-vin-vout">
-            <div class="pull-right DASH-value" data-ng-class="{'text-danger': $root.currentAddr == vin.addr}">
-              {{$root.currency.getConvertion(vin.value) || vin.value + ' DASH'}}
+            <div class="pull-right VKAX-value" data-ng-class="{'text-danger': $root.currentAddr == vin.addr}">
+              {{$root.currency.getConvertion(vin.value) || vin.value + ' VKAX'}}
             </div>
             <div class="ellipsis">
               <span data-ng-show="vin.notAddr">{{vin.addr}}</span>
-              <span class="text-muted" title="Current Dash Address" data-ng-show="vin.addr == $root.currentAddr">{{vin.addr}}</span>
+              <span class="text-muted" title="Current Vkax Address" data-ng-show="vin.addr == $root.currentAddr">{{vin.addr}}</span>
               <a href="address/{{vin.addr}}" data-ng-show="!vin.notAddr && vin.addr != $root.currentAddr">{{vin.addr}}</a>
             </div>
             <div data-ng-show="vin.unconfirmedInput" class="text-danger"> <span class="glyphicon glyphicon-warning-sign"></span> (Input unconfirmed)</div>
@@ -101,8 +101,8 @@
         <div data-ng-repeat="vin in tx.vin| startFrom:currentInExpanded*sizeInExpanded | limitTo:sizeInExpanded" data-ng-if="fromVinCollapsed ? v_index == vin.n : 1">
           <div class="panel panel-default transaction-vin-vout">
             <div class="panel-body">
-              <div class="pull-right DASH-value">
-                {{$root.currency.getConvertion(vin.value) || vin.value + ' DASH'}}
+              <div class="pull-right VKAX-value">
+                {{$root.currency.getConvertion(vin.value) || vin.value + ' VKAX'}}
               </div>
               <div class="ellipsis">
                 <a class="glyphicon glyphicon-chevron-right" href="tx/{{vin.txid}}/>/{{vin.vout}}" title="Outpoint: {{vin.txid}},{{vin.vout}}"></a>
@@ -163,15 +163,15 @@
         <div data-ng-repeat="vout in tx.voutSimple| startFrom:currentOutNoExpanded*sizeOutNoExpanded | limitTo:sizeOutNoExpanded">
           <div class="transaction-vin-vout panel panel-default">
             <div class="panel-body">
-              <div class="pull-right DASH-value" data-ng-class="{'text-success': $root.currentAddr == vout.addr}">
-                {{$root.currency.getConvertion(vout.value) || vout.value + ' DASH' }}
+              <div class="pull-right VKAX-value" data-ng-class="{'text-success': $root.currentAddr == vout.addr}">
+                {{$root.currency.getConvertion(vout.value) || vout.value + ' VKAX' }}
                 <span class="text-danger" data-ng-show="vout.isSpent" tooltip="Output is spent" tooltip-placement="left">(S)</span>
                 <span class="text-success" data-ng-show="!vout.isSpent"  tooltip="Output is unspent" tooltip-placement="left">(U)</span>
               </div>
 
               <div class="ellipsis">
                 <span data-ng-show="vout.notAddr">{{vout.addr}}</span>
-                <span class="text-muted" title="Current Dash Address" data-ng-show="address == $root.currentAddr" data-ng-repeat="address in vout.addr.split(',')">{{vout.addr}}</span>
+                <span class="text-muted" title="Current Vkax Address" data-ng-show="address == $root.currentAddr" data-ng-repeat="address in vout.addr.split(',')">{{vout.addr}}</span>
                 <a href="address/{{address}}"  data-ng-show="!vout.notAddr && address != $root.currentAddr" data-ng-repeat="address in vout.addr.split(',')">{{address}}</a>
               </div>
             </div>
@@ -190,8 +190,8 @@
         <div data-ng-repeat="vout in tx.vout| startFrom:currentOutExpanded*sizeOutExpanded | limitTo:sizeOutExpanded" data-ng-if="fromVoutCollapsed ? v_index == vout.n : 1">
           <div class="panel panel-default transaction-vin-vout">
             <div class="panel-body">
-              <div class="pull-right DASH-value">
-                <span>{{$root.currency.getConvertion(vout.value) || vout.value + ' DASH'}}
+              <div class="pull-right VKAX-value">
+                <span>{{$root.currency.getConvertion(vout.value) || vout.value + ' VKAX'}}
                   <span class="text-success" data-ng-show="!vout.spentTxId" tooltip="Output is unspent" tooltip-placement="left">(U)</span>
                   <a class="glyphicon glyphicon-chevron-right" data-ng-show="vout.spentTxId" href="tx/{{vout.spentTxId}}/</{{vout.spentIndex}}" title="Spent at: {{vout.spentTxId}},{{vout.spentIndex}}"></a>
                 </span>
@@ -234,12 +234,12 @@
 <div class="line-top row" data-ng-hide="!tx">
   <div class="col-xs-6 col-sm-4 col-md-4">
     <span data-ng-show="!tx.isCoinBase &&  !isNaN(parseFloat(tx.fees))"
-      class="txvalues txvalues-default"><span translate>Fee</span>: {{$root.currency.getConvertion(tx.fees) || tx.fees + 'DASH'}} </span>
+      class="txvalues txvalues-default"><span translate>Fee</span>: {{$root.currency.getConvertion(tx.fees) || tx.fees + 'VKAX'}} </span>
   </div>
   <div class="col-xs-6 col-sm-8 col-md-8 text-right">
     <span data-ng-show="tx.confirmations >= 0 || tx.txlock" class="txvalues
       txvalues-success">{{tx.confirmations}} <span translate>Confirmations</span> <span data-ng-show="tx.txlock"> InstantSend TxLock</span></span>
     <span data-ng-show="tx.confirmations < 0" class="txvalues txvalues-danger" translate>Unconfirmed Transaction!</span>
-    <span class="txvalues txvalues-primary">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' DASH' }}</span>
+    <span class="txvalues txvalues-primary">{{$root.currency.getConvertion(tx.valueOut) || tx.valueOut + ' VKAX' }}</span>
   </div>
 </div>

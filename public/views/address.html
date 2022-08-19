@@ -7,7 +7,7 @@
           <span class="btn-copy" clip-copy="address.addrStr"></span>
       </div>
       <div class="col-md-4">
-        <span class="txvalues txvalues-primary"><strong translate>Final Balance</strong> {{$root.currency.getConvertion(address.balance) || address.balance + ' DASH' }}</span>
+        <span class="txvalues txvalues-primary"><strong translate>Final Balance</strong> {{$root.currency.getConvertion(address.balance) || address.balance + ' VKAX' }}</span>
       </div>
     </div>
     <div class="hide_snavbar">
@@ -17,7 +17,7 @@
       </a>
     </div>
   </div>
-  <h1><span translate>Address</span> <small data-ng-show="address.addrStr">{{$root.currency.getConvertion(address.balance) || address.balance + ' DASH'}}</small></h1>
+  <h1><span translate>Address</span> <small data-ng-show="address.addrStr">{{$root.currency.getConvertion(address.balance) || address.balance + ' VKAX'}}</small></h1>
   <div class="text-muted" data-ng-if="!address.addrStr">
     <span translate>Loading Address Information</span> <span class="loader-gif"></span>
   </div>
@@ -27,22 +27,22 @@
       <span class="text-muted">{{address.addrStr}}</span>
       <span class="btn-copy" clip-copy="address.addrStr"></span>
     </div>
-    <h2 translate>Summary <small>{{address.balance + " DASH confirmed" + (address.unconfirmedTxApperances>0?" + "+address.unconfirmedBalance+" DASH unconfirmed" :"")}}</small></h2>
+    <h2 translate>Summary <small>{{address.balance + " VKAX confirmed" + (address.unconfirmedTxApperances>0?" + "+address.unconfirmedBalance+" VKAX unconfirmed" :"")}}</small></h2>
     <div class="row" data-ng-hide="!address.addrStr">
       <div class="col-md-10">
         <table class="table">
           <tbody>
           <tr>
             <td><strong translate>Final Balance</strong></td>
-            <td class="ellipsis text-right">{{$root.currency.getConvertion(address.balance+address.unconfirmedBalance) || (address.balance+address.unconfirmedBalance) + ' DASH'}}</td>
+            <td class="ellipsis text-right">{{$root.currency.getConvertion(address.balance+address.unconfirmedBalance) || (address.balance+address.unconfirmedBalance) + ' VKAX'}}</td>
           </tr>
           <tr>
             <td><span translate>Total Received</span></td>
-            <td class="ellipsis text-right">{{$root.currency.getConvertion(address.totalReceived+(address.unconfirmedBalance>0?address.unconfirmedBalance:0)) || (address.totalReceived+(address.unconfirmedBalance>0?address.unconfirmedBalance:0)) + ' DASH'}}</td>
+            <td class="ellipsis text-right">{{$root.currency.getConvertion(address.totalReceived+(address.unconfirmedBalance>0?address.unconfirmedBalance:0)) || (address.totalReceived+(address.unconfirmedBalance>0?address.unconfirmedBalance:0)) + ' VKAX'}}</td>
           </tr>
           <tr>
             <td><span translate>Total Sent</span></td>
-            <td class="ellipsis text-right">{{$root.currency.getConvertion(address.totalSent+(address.unconfirmedBalance<0?-address.unconfirmedBalance:0)) || (address.totalSent+(address.unconfirmedBalance<0?-address.unconfirmedBalance:0)) + ' DASH'}}</td>
+            <td class="ellipsis text-right">{{$root.currency.getConvertion(address.totalSent+(address.unconfirmedBalance<0?-address.unconfirmedBalance:0)) || (address.totalSent+(address.unconfirmedBalance<0?-address.unconfirmedBalance:0)) + ' VKAX'}}</td>
           </tr>
           <tr>
             <td><strong translate>No. Transactions</strong></td>
